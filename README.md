@@ -25,10 +25,11 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>High-Level Deployment and Configuration Steps</h2>
 
-- Step 1
-- Step 2
-- Step 3
-- Step 4
+- Setup Resources in Azure and Ensure Connectivity between client and Domain Controller
+- Install Active Directory 
+- Create an Admin and Normal User Account in AD
+- Join Client-1 to your domain 
+- Setup Remote Desktop for non-admin users and create additional users to attempt login into client-1
 
 <h2>Deployment and Configuration Steps</h2>
 
@@ -36,7 +37,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Create the Domain Controller VM in Microsoft Azure and set its NIC Private IP address to static. Create a Client VM using the same Resource Group and Vnet.-> Install the Active Directory Domain Services (AD DS) role: This is done through the Server Manager tool on your Windows Server. Simply select the AD DS role and follow the prompts to install it.
 </p>
 <br />
 
@@ -44,7 +45,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Configure the domain name: During the AD DS installation, you'll be prompted to specify a domain name. This will be the name of your Active Directory domain, and it should be unique and not already in use. Ensure connectivity between the client and Domain Controller by pinging DC-1's private IP address with ping -t <ip address> and enabling ICMPv4 in the local windows Firewall of the Domain Controller.
 </p>
 <br />
 
@@ -52,6 +53,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Join computers (client-1) to the domain: Once Active Directory is set up, you can join your computers to the domain. This is done through the system properties settings on each computer.
 </p>
 <br />
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+Setup Remote Desktop for non-administrative users on Client-1 and create additional users by running a PowerShell script on DC-1.->> Create user accounts and assign permissions: With Active Directory set up and your computers joined to the domain, you can start creating user accounts and assigning permissions to them. This allows you to control access to network resources and ensure that only authorized users can access sensitive information.
